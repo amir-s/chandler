@@ -1,0 +1,31 @@
+{
+  "name": "chandler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "commander": "^2.7.1",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5",
+    "socket.io-stream": "^0.6.0",
+    "watch": "^0.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amir-s/chandler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amir-s/chandler/issues"
+  },
+  "homepage": "https://github.com/amir-s/chandler"
+}
