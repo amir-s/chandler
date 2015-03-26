@@ -4,7 +4,7 @@ var fs = require('fs');
 var sio = require('socket.io-client');
 var watch = require('watch');
 var ss = require('socket.io-stream');
-
+var server =  'http://x.sharecode.io:3333/';
 function exit(err) {
 	console.error(err);
 	process.exit(1);
@@ -34,13 +34,13 @@ if (program.create) {
 	if (!fs.existsSync(folder)) {
 		exit("The folder '" + folder + "' does not exists.");
 	}
-	var io = sio("http://localhost:3333");
+	var io = sio(server);
 	io.on('connect', function () {
 		io.emit('action', 'create');
 		io.on('session', function (id) {
 			sid = id;
 			io.disconnect();
-			io = sio("http://localhost:3333/" + sid);
+			io = sio(server + sid);
 			io.on('connect', function () {
 				console.log("connected to " + sid);
 				connected = true;
@@ -56,7 +56,7 @@ if (program.create) {
 }
 if (program.attach) {
 	var sid = program.attach;
-	io = sio("http://localhost:3333/" + sid);
+	io = sio(server + sid);
 	io.on('connect', function () {
 		console.log("connected to " + sid);
 		connected = true;
@@ -87,7 +87,7 @@ var startWatch = function () {
 			}
 			monitor.on("created", watcher);
 			monitor.on("changed", watcher);
-			
+
 			monitor.on("removed", function (f, stat) {
 				// console.log('r', f, stat);
 			})
